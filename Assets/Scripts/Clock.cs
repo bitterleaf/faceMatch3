@@ -9,7 +9,7 @@ public class Clock : MonoBehaviour {
 
     public static void write(string str)
     {
-        System.IO.StreamWriter file = new System.IO.StreamWriter("c:\\DataLogs\\unity_flower\\test.txt", true);
+        System.IO.StreamWriter file = new System.IO.StreamWriter("c:\\datalogs\\unity_faces\\test.txt", true);
         file.WriteLine(str);
 
         file.Close();
@@ -20,7 +20,9 @@ public class Clock : MonoBehaviour {
     {
         long fTest;
         GetSystemTimePreciseAsFileTime(out fTest);
-        write(str + " " + fTest);
+		System.DateTime dt = new System.DateTime(1601, 01, 01).AddTicks(fTest);
+		dt = dt.ToLocalTime();
+		write(str + " " + dt.ToString("yyyy-MM-dd HH:mm:ss.ffffff"));
     }
 
 }

@@ -75,7 +75,9 @@ public class Grid : MonoBehaviour, ICustomEvents
         long fTest;
         Clock.GetSystemTimePreciseAsFileTime(out fTest);
         //Debug.Log("start time " + fTest);
-        Clock.write("start_time " + fTest);
+		System.DateTime dt = new System.DateTime(1601, 01, 01).AddTicks(fTest);
+		dt = dt.ToLocalTime();
+		Clock.write("start_time " + dt.ToString("yyyy-MM-dd HH:mm:ss.ffffff"));
 
         m_flashTime = Time.time + 1e6f;
         m_numAddedAtX = new int[w];

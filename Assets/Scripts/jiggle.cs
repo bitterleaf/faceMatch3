@@ -32,12 +32,16 @@ public class jiggle : MonoBehaviour {
 
     public IEnumerator DestroyAction()
     {
+		Vector2 loc = gameObject.GetComponent<TargetJoint2D> ().target;
+		int id = gameObject.GetComponent<Gem> ().m_type;
+		Clock.markEvent ("destroy_started_obj_"+id.ToString()+"_loc_"+loc.x.ToString()+"_"+loc.y.ToString());
         float t = Time.time;
         while(transform != null && Time.time < t + destroyTime)
         {
             transform.localScale = destroyScale * transform.localScale;
             yield return new WaitForEndOfFrame();
         }
+		Clock.markEvent ("destroy_stopped_obj_"+id.ToString()+"_loc_"+loc.x.ToString()+"_"+loc.y.ToString());
     }
 
 }
