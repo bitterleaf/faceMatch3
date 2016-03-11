@@ -178,6 +178,8 @@ public class Grid : MonoBehaviour, ICustomEvents
     //catch the swap event
     public void Swap()
     {
+        m_flashTime = Time.time + 100.0f; //will prevent a new jiggle from starting
+
         DropFlower();
 
         StartCoroutine(DestroyTriples());
